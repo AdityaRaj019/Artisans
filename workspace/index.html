@@ -1,76 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artisans Avenue</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <!-- Header Section -->
-  <header>
-    <div class="head">
-      <div class="logo">
-        <h1 class="logo-name">Artisans Avenue</h1>
-      </div>
-      <div class="menu">
-        <nav>
-          <ul class="nav">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">Contact Us</a></li>
-          </ul>
-        </nav>
-      </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artisans Avenue</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <div class="head">
+        <div class="logo">
+          <h1 class="logo-name">Artisans Avenue</h1>
+        </div>
+        <!-- <div class="menu">
+          <nav>
+            <ul class="nav">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Products</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </nav>
+        </div> -->
         <button id="toggle-cart" class="view-cart-btn">View Cart</button>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1 class="hero-heading">Celebrate Creativity, One Artisan at a Time</h1>
-    <p class="hero-subheading">
-      Discover handcrafted goods, each with a unique story, from skilled artisans around the world.
-    </p>
-  </section>
-
-  <!-- Product Section -->
-  <section class="product-section">
-    <h2 class="section-title">Our Products</h2>
-    <div class="product-grid">
-      <!-- Example Product Cards -->
-      <div class="product-card">
-        <img src="https://via.placeholder.com/200" alt="Handmade Necklace" class="product-image">
-        <h3 class="product-name">Handmade Necklace</h3>
-        <p class="product-price">$50</p>
-        <button class="add-to-cart-btn" data-product="Handmade Necklace" data-price="50">Add to Cart</button>
       </div>
-      <div class="product-card">
-        <img src="https://via.placeholder.com/200" alt="Knitted Sweater" class="product-image">
-        <h3 class="product-name">Knitted Sweater</h3>
-        <p class="product-price">$75</p>
-        <button class="add-to-cart-btn" data-product="Knitted Sweater" data-price="75">Add to Cart</button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1 class="hero-heading">Celebrate Creativity, One Artisan at a Time</h1>
+      <p class="hero-subheading">
+        Discover handcrafted goods, each with a unique story, from skilled
+        artisans around the world.
+      </p>
+    </section>
+
+    <!-- Product Section -->
+    <section class="product-section">
+      <h2 class="section-title">Our Products</h2>
+      <div class="product-grid">
+        <!-- Example Product Cards -->
+        <!-- <div class="product-card">
+          <img
+            src="https://via.placeholder.com/200"
+            alt="Handmade Necklace"
+            class="product-image"
+          />
+          <h3 class="product-name">Handmade Necklace</h3>
+          <p class="product-price">$50</p>
+          <button
+            class="add-to-cart-btn"
+            data-product="Handmade Necklace"
+            data-price="50"
+          >
+            Add to Cart
+          </button> -->
+        <!-- </div> -->
+        <!-- <div class="product-card">
+          <img
+            src="./assets/beauty-7403551_1280.jpg"
+            alt="Knitted Sweater"
+            class="product-image"
+          />
+          <h3 class="product-name">Knitted Sweater</h3>
+          <p class="product-price">$75</p>
+          <button
+            class="add-to-cart-btn"
+            data-product="Knitted Sweater"
+            data-price="75"
+          >
+            Add to Cart
+          </button>
+        </div> -->
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Cart Section -->
-  <section id="cart" class="cart hidden">
-    <h2 class="cart-title">Your Cart</h2>
-    <div class="cart-items">
-      <!-- Cart items will be dynamically added here -->
-      <p class="empty-cart-msg">Your cart is empty.</p>
-    </div>
-    <button class="checkout-btn">Checkout</button>
-    <button id="close-cart" class="close-cart-btn">Close</button>
-  </section>
+    <!-- Cart Section -->
+    <section id="cart" class="cart hidden">
+      <h2 class="cart-title">Your Cart</h2>
+      <div class="cart-items">
+        <!-- Cart items will be dynamically added here -->
+        <!-- <p class="empty-cart-msg">Your cart is empty.</p> -->
+      </div>
+      <div class="total-cart">
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2024 Artisans Avenue. All rights reserved.</p>
-  </footer>
+      </div>
+      <div class="btn">
+        <button class="checkout-btn">Checkout</button>
+        <button id="close-cart" class="close-cart-btn">Close</button>
+      </div>
+    </section>
 
-  <script src="script.js"></script>
-</body>
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2024 Artisans Avenue. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
 </html>
