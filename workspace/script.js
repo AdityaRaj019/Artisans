@@ -1,99 +1,113 @@
-const cart = document.getElementById('cart');
-const toggleCartBtn = document.getElementById('toggle-cart');
-const closeCartBtn = document.getElementById('close-cart');
+// Product data
+const products = [
+  { id: 1, name: "Handmade Necklace", price: 50, image: "./assets/neclace.jpg" },
+  { id: 2, name: "Knitted Sweater", price: 75, image: "./assets/sweater.png" },
+  { id: 3, name: "Artisanal Mug", price: 25, image: "./assets/Exhausting-Mug.png" },
+  { id: 4, name: "Vase", price: 30, image: "./assets/vase.jpeg" },
+  { id: 5, name: "Stone Bracelet", price: 40, image: "./assets/bracelet.png" },
+  { id: 6, name: "Cotton T-shirt", price: 45, image: "./assets/white t.png" },
+];
 
+// Cart data
+let cart = [];
+
+// Render products
+const productGrid = document.querySelector('.product-grid');
+products.forEach(product => {
+  const productCard = document.createElement('div');
+  productCard.classList.add('product-card');
+  productCard.innerHTML = `
+    <img src="${product.image}" alt="${product.name}" class="product-image">
+    <h3>${product.name}</h3>
+    <p class="product-price">Price: $${product.price}</p>
+    <button class="add-to-cart-btn" onclick="addToCart(${product.id})">Add to Cart</button>
+  `;
+  productGrid.appendChild(productCard);
+});
+
+// Render cart
+const cartSection = document.querySelector('#cart');
+const cartItemsContainer = document.querySelector('.cart-items');
+
+function renderCart() {
+  cartItemsContainer.innerHTML = '';
+  const totalCointainer = document.querySelector('.total-cart');
+
+  let totalQuantity = 0;
+  let totalPrice = 0;
+
+  if (cart.length === 0) {
+    cartItemsContainer.innerHTML = '<p class="empty-cart-msg">Your cart is empty.</p>';
+    return;
+  }
+  cart.forEach(item => {
+    totalQuantity+= item.quantity;
+    totalPrice+=item.quantity * item.price;
+
+    const cartItem = document.createElement('div');
+    cartItem.classList.add('cart-item');
+    cartItem.innerHTML = `
+      <div>
+        <span>${item.name} ($${item.price} x ${item.quantity})</span>
+      </div>
+      <div>
+        <button class="quantity-btn" onclick="decrementQuantity(${item.id})">-</button>
+        <button class="quantity-btn" onclick="incrementQuantity(${item.id})">+</button>
+        <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
+      </div>
+    `;
+    cartItemsContainer.appendChild(cartItem);
+    totalCointainer.innerHTML=`
+      <p> Total Quantity: ${totalQuantity} </p>
+      <p> Total Price: $${totalPrice.toFixed(2 )}</p>
+    `
+  });
+}
+
+// Add to cart
+function addToCart(productId) {
+  const product = products.find(p => p.id === productId);
+  const cartItem = cart.find(item => item.id === productId);
+  if (cartItem) {
+    cartItem.quantity++;
+  } else {
+    cart.push({ ...product, quantity: 1 });
+  }
+  renderCart();
+}
+
+// Increment quantity
+function incrementQuantity(productId) {
+  const cartItem = cart.find(item => item.id === productId);
+  if (cartItem) {
+    cartItem.quantity++;
+  }
+  renderCart();
+}
+
+// Decrement quantity
+function decrementQuantity(productId) {
+  const cartItem = cart.find(item => item.id === productId);
+  if (cartItem) {
+    cartItem.quantity--;
+    if (cartItem.quantity === 0) {
+      cart = cart.filter(item => item.id !== productId);
+    }
+  }
+  renderCart();
+}
+
+// Remove from cart
+function removeFromCart(productId) {
+  cart = cart.filter(item => item.id !== productId);
+  renderCart();
+}
 // Toggle cart visibility
-toggleCartBtn.addEventListener('click', () => {
-  cart.classList.toggle('hidden');
+document.querySelector('#toggle-cart').addEventListener('click', () => {
+  cartSection.classList.toggle('hidden');
 });
 
 // Close cart
-closeCartBtn.addEventListener('click', () => {
-  cart.classList.add('hidden');
+document.querySelector('#close-cart').addEventListener('click', () => {
+  cartSection.classList.add('hidden');
 });
-const products = [
-  {
-    name: "Handmade Necklace",
-    price: 50,
-    image : "https://via.placeholder.com/200",
-  },
-  {
-    name: "Knitted Swetter",
-    price: 75,
-    image : "https://via.placeholder.com/200",
-  },
-  {
-    name: "Handmade Vase",
-    price: 40,
-    image : "https://via.placeholder.com/200",
-  },
-  {
-    name: "Handmade Bracelet",
-    price: 30,
-    image : "https://via.placeholder.com/200",
-  },
-  {
-    name: "Hankerchief",
-    price: 20,
-    image : "https://via.placeholder.com/200",
-  },
-  {
-    name: "Handmade vest",
-    price: 50,
-    image : "https://via.placeholder.com/200",
-  },
-];
-
-const productGrid = document.querySelector('.product-grid');
-//const cartItemsContainer = document.querySelector('.cart-items');
-
-function renderProducts() {
-  products.forEach(product => {
-    const productCard = document.createElement('div');
-    productCard.classList.add('product-card');
-
-    productCard.innerHTML = `
-      <img src="${product.image}" alt="${product.name}" class="product-image">
-      <h3 class="product-name">${product.name}</h3>
-      <p class="product-price">$${product.price}</p>
-      <button class="add-to-cart-btn" data-product="${product.name}" data-price="${product.price}">Add to Cart</button>
-    `;
-
-    productGrid.appendChild(productCard);
-  });
-}
-
-// const productGrid = document.querySelector('.product-grid');
-// function renderProducts(){
-//   proucts.forEach(_product => {
-//     const productCard=document.createElement('div');
-//     productCard.classList.add('product-card');
-//     productCard.innerHTML = `
-//     <img src="${proucts.image}" alt="${proucts.name}" class="product-image">
-//         <h3 class="product-name">${proucts.name}</h3>
-//         <p class="product-price">$${proucts.price}</p>
-//         <button class="add-to-cart-btn" data-product=${proucts.name}data-price=$${proucts.price}>Add to Cart</button>`;
-
-//         productGrid.appendChild(productCard);
-//     });
-//}
-const cartItemsContainer = document.querySelector('.cart-items');
-function attachEventListeners() {
-  const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-
-  addToCartButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const product = button.getAttribute('data-product');
-      const price = button.getAttribute('data-price');
-
-      const cartItem = document.createElement('div');
-      cartItem.classList.add('cart-items');
-      cartItem.innerHTML = `<p>${product} - $${price}</p>`;
-      cartItemsContainer.appendChild(cartItem);
-
-      document.querySelector('.empty-cart-msg').style.display = 'none';
-    });
-  });
-}
-renderProducts();
-attachEventListeners(); 
